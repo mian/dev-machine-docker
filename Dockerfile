@@ -1,6 +1,6 @@
 FROM phusion/baseimage
 
-MAINTAINER Anmol Nagpal <ianmolnagpal@gmail.com>
+MAINTAINER Mian Muhammad <se.mianasif@gmail.com>
 
 # Keep upstart from complaining
 RUN dpkg-divert --local --rename --add /sbin/initctl
