@@ -27,30 +27,30 @@ RUN /usr/bin/easy_install supervisor-stdout
 RUN mkdir -p /var/run/sshd
 # Supervisor Config
 
-RUN sudo useradd anmol
-RUN passwd -d anmol
+RUN sudo useradd mianmuhammad
+RUN passwd -d mianmuhammad
 RUN passwd -d root
 RUN echo "PermitEmptyPasswords yes" >> /etc/ssh/sshd_config
-RUN echo "anmol ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+RUN echo "mianmuhammad ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN echo "ChallengeResponseAuthentication no" >> /etc/ssh/sshd_config
 RUN echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
-RUN chsh -s `which bash` anmol
-RUN usermod -d /home/anmol anmol
-RUN mkdir -p /home/anmol
-RUN mkdir -p /home/anmol/.ssh
-ADD ./id_rsa		 /home/anmol/.ssh/authorized_keys
-RUN chown -R anmol:anmol /home/anmol
-RUN chmod -R 777 /home/anmol
+RUN chsh -s `which bash` mianmuhammad
+RUN usermod -d /home/mianmuhammad mianmuhammad
+RUN mkdir -p /home/mianmuhammad
+RUN mkdir -p /home/mianmuhammad/.ssh
+ADD ./id_rsa		 /home/mianmuhammad/.ssh/authorized_keys
+RUN chown -R mianmuhammad:mianmuhammad /home/mianmuhammad
+RUN chmod -R 777 /home/mianmuhammad
 
 # Install zsh
 ADD ./files/install-zsh.sh /root/install-zsh.sh
-ADD ./files/install-zsh.sh /home/anmol/install-zsh.sh
+ADD ./files/install-zsh.sh /home/mianmuhammad/install-zsh.sh
 
 RUN chmod +x /root/install-zsh.sh
-RUN chmod +x /home/anmol/install-zsh.sh
+RUN chmod +x /home/mianmuhammad/install-zsh.sh
 RUN sh /root/install-zsh.sh
 
-RUN su - anmol -c "sh /home/anmol/install-zsh.sh"
+RUN su - mianmuhammad -c "sh /home/mianmuhammad/install-zsh.sh"
 
 #RUN echo 'root:p' | chpasswd
 RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
@@ -62,9 +62,9 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 
 RUN rm  /root/.zshrc
 ADD ./files/zshrc /root/.zshrc
-ADD ./files/zshrc //home/anmol/.zshrc
+ADD ./files/zshrc //home/mianmuhammad/.zshrc
 
-RUN chsh -s `which zsh` anmol
+RUN chsh -s `which zsh` mianmuhammad
 RUN chsh -s `which zsh`
 
 RUN chmod -R 755 /usr/local/share/zsh/site-functions
